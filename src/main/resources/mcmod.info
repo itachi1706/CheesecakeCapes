@@ -1,0 +1,16 @@
+[
+{
+  "modid": "cheesecakecapes",
+  "name": "Cheesecake Capes",
+  "description": "A Capes Mod",
+  "version": "1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["itachi1706"],
+  "credits": "Test",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
