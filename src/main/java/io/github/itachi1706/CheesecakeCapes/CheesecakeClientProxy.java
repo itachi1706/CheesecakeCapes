@@ -8,7 +8,8 @@ public class CheesecakeClientProxy extends CheesecakeCommonProxy {
 	public void initCapes()
 	{
 		//DevCapes.getInstance().registerConfig("https://dl.dropboxusercontent.com/u/46826040/McHost/DevCapesConfig.txt", "cheesecakecapes");
-		DevCapes.getInstance().registerConfig("https://dl.dropboxusercontent.com/u/46826040/McHost/DevCapesConfig.txt");
+		//DevCapes.getInstance().registerConfig("https://dl.dropboxusercontent.com/u/46826040/McHost/DevCapesConfig.txt");
+		DevCapes.getInstance().registerConfig("http://www.itachi1706.com/mc/DevCapesConfig.txt");
 	}
 	
 }
