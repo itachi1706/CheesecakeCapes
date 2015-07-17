@@ -43,13 +43,16 @@ Icon
 # Gradle temp
 .gradle
 .gradle/
+.gradle/*
 
 # Build Files
 build
 build/
+build/*
 
 eclipse
 eclipse/
+eclipse/*
 
 # ===================
 # IntelliJ
