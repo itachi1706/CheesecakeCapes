@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "CheesecakeCapes",
+    "name": "Cheesecake Capes Mod",
+    "description": "A Capes Mod for Internal Use only within the Cheesecake Network. Only trusted members has a cape. No cape requests will be entertained",
+    "version": "1.7.10-1.0_dev1",
+    "mcversion": "1.7.10",
+    "url": "http://www.itachi1706.com",
+    "updateUrl": "",
+    "authorList": ["itachi1706"],
+    "credits": "A Internal Capes Mod. Big Thanks to Developer Capes by Jadar Studios for making this possible",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
