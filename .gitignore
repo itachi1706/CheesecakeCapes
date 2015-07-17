@@ -48,6 +48,9 @@ Icon
 build
 build/
 
+eclipse
+eclipse/
+
 # ===================
 # IntelliJ
 # ===================
