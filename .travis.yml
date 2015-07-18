@@ -12,6 +12,7 @@ after_success:
 deploy:
     provider: releases
     api_key: $OAUTH_KEY
+    file_glob: true
     file: ./build/libs/CheesecakeCapes*.jar
     skip_cleanup: true
     on:
