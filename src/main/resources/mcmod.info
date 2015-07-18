@@ -11,6 +11,7 @@
     "credits": "A Internal Capes Mod. Big Thanks to Developer Capes by Jadar Studios for making this possible",
     "logoFile": "",
     "screenshots": [],
+    "parent":"",
     "dependencies": []
   }
 ]
