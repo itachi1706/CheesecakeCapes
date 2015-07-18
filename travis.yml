@@ -1,0 +1,18 @@
+language: java
+jdk: oraclejdk7
+
+before_install:
+  - chmod +x gradlew
+
+script: ./gradlew build
+
+after_success:
+  - ls ./build/libs
+
+deploy:
+    provider: releases
+    api_key: $OAUTH_KEY
+    file: ./build/libs/*
+    skip_cleanup: true
+    on:
+        tags: true
