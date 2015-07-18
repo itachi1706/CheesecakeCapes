@@ -12,7 +12,7 @@ after_success:
 deploy:
     provider: releases
     api_key: $OAUTH_KEY
-    file: ./build/libs/CheesecakeCapes*
+    file: ./build/libs/CheesecakeCapes*.jar
     skip_cleanup: true
     on:
         tags: true
