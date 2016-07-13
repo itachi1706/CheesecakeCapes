@@ -16,8 +16,6 @@ import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.util.ResourceLocation;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Map;
 
@@ -51,11 +49,18 @@ public class StaticCape extends AbstractCape {
             playerTextures.setAccessible(true);
             Map<MinecraftProfileTexture.Type, ResourceLocation> texture = (Map<MinecraftProfileTexture.Type, ResourceLocation>) playerTextures.get(networkPlayerInfo);
             texture.put(MinecraftProfileTexture.Type.CAPE, location);
+            texture.put(MinecraftProfileTexture.Type.ELYTRA, location);
+            playerTextures.set(networkPlayerInfo, texture);
 
-            Method load = NetworkPlayerInfo.class.getDeclaredMethod("loadPlayerTextures");
+            // TODO: Test
+            ResourceLocation skin = player.getLocationSkin();
+            ResourceLocation elytra = player.getLocationElytra();
+            ResourceLocation cape = player.getLocationCape();
+
+            /*Method load = NetworkPlayerInfo.class.getDeclaredMethod("loadPlayerTextures");
             load.setAccessible(true);
             load.invoke(null);
-            load.setAccessible(false);
+            load.setAccessible(false);*/
             //networkPlayerInfo.playerTextures.put(MinecraftProfileTexture.Type.CAPE, location);
 
 
@@ -67,13 +72,13 @@ public class StaticCape extends AbstractCape {
         } catch (IllegalAccessException e) {
             DevCapes.logger.error("Cannot access fields");
             e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        }/* catch (NoSuchMethodException e) {
             DevCapes.logger.error("Cannot find method. Mappings may have changed!");
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             DevCapes.logger.error("Cannot invoke method. Mappings may have changed!");
             e.printStackTrace();
-        }
+        }*/
 
         Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
     }
