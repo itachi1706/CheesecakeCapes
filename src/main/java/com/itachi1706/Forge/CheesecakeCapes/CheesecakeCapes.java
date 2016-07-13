@@ -1,8 +1,8 @@
 package com.itachi1706.Forge.CheesecakeCapes;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 /**
  * Created by Kenneth on 17/7/2015.
