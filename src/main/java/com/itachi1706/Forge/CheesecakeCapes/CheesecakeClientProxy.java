@@ -13,7 +13,10 @@ public class CheesecakeClientProxy extends CheesecakeCommonProxy {
     @Override
     public void initCapes()
     {
+        LogHelper.info("Initializing Capes");
+        LogHelper.info("Configuration: Retrieving from: " + CAPES_URL_CONFIG);
         DevCapes.getInstance().registerConfig(CAPES_URL_CONFIG);
+        LogHelper.info("Initialization Completed");
     }
 
 }
