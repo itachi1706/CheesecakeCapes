@@ -27,6 +27,8 @@ import java.util.Map;
  */
 public class StaticCape extends AbstractCape {
 
+    private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation("textures/entity/elytra.png");
+
     public StaticCape(String name, URL url) {
         this.setName(name);
         this.setURL(url);
@@ -50,7 +52,9 @@ public class StaticCape extends AbstractCape {
             playerTextures.setAccessible(true);
             Map<MinecraftProfileTexture.Type, ResourceLocation> texture = (Map<MinecraftProfileTexture.Type, ResourceLocation>) playerTextures.get(networkPlayerInfo);
             texture.put(MinecraftProfileTexture.Type.CAPE, location);
-            //texture.put(MinecraftProfileTexture.Type.ELYTRA, location); // TODO: For some reason elytra aint working D:
+
+            // TODO: Figure out how to create a elytra texture as well and parse it
+            texture.put(MinecraftProfileTexture.Type.ELYTRA, TEXTURE_ELYTRA);
 
             playerInfo.setAccessible(false);
             playerTextures.setAccessible(false);
