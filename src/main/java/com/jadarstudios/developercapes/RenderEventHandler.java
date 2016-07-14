@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class RenderEventHandler {
 
     @SubscribeEvent
-    public void renderPlayer(RenderLivingEvent.Pre event) {
+    public void renderPlayer(RenderLivingEvent.Specials.Post event) {
         if (event.getEntity() instanceof AbstractClientPlayer) {
             AbstractClientPlayer player = (AbstractClientPlayer) event.getEntity();
 
