@@ -6,7 +6,6 @@
  */
 package com.jadarstudios.developercapes.cape;
 
-import com.jadarstudios.developercapes.DevCapes;
 import com.jadarstudios.developercapes.HDImageBuffer;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
@@ -14,9 +13,8 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Map;
 
@@ -43,25 +41,13 @@ public class StaticCape extends AbstractCape {
         ResourceLocation location = this.getLocation();
         //player.func_152121_a(MinecraftProfileTexture.Type.CAPE, location);
         // Reflection (May fail someday)
-        try {
-            Field playerInfo = ReflectionHelper.findField(AbstractClientPlayer.class, new String[] {"field_175157_a", "playerInfo"});
-            playerInfo.setAccessible(true);
-            NetworkPlayerInfo networkPlayerInfo = (NetworkPlayerInfo) playerInfo.get(player);
+        NetworkPlayerInfo networkPlayerInfo = ObfuscationReflectionHelper.getPrivateValue(AbstractClientPlayer.class, player, "field_175157_a", "playerInfo");
 
-            Field playerTextures = ReflectionHelper.findField(NetworkPlayerInfo.class, new String[] {"field_178864_d", "playerTextures"});
-            playerTextures.setAccessible(true);
-            Map<MinecraftProfileTexture.Type, ResourceLocation> texture = (Map<MinecraftProfileTexture.Type, ResourceLocation>) playerTextures.get(networkPlayerInfo);
-            texture.put(MinecraftProfileTexture.Type.CAPE, location);
+        Map<MinecraftProfileTexture.Type, ResourceLocation> texture = ObfuscationReflectionHelper.getPrivateValue(NetworkPlayerInfo.class, networkPlayerInfo, "field_187107_a", "playerTextures");
+        texture.put(MinecraftProfileTexture.Type.CAPE, location);
 
-            // TODO: Figure out how to create a elytra texture as well and parse it
-            texture.put(MinecraftProfileTexture.Type.ELYTRA, TEXTURE_ELYTRA);
-
-            playerInfo.setAccessible(false);
-            playerTextures.setAccessible(false);
-        } catch (IllegalAccessException e) {
-            DevCapes.logger.error("Cannot access fields");
-            e.printStackTrace();
-        }
+        // TODO: Figure out how to create a elytra texture as well and parse it
+        texture.put(MinecraftProfileTexture.Type.ELYTRA, TEXTURE_ELYTRA);
 
         Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
     }
