@@ -1,19 +1,18 @@
 language: java
 jdk: oraclejdk7
-
 before_install:
-  - chmod +x gradlew
-
-script: ./gradlew build
-
+- chmod +x gradlew
+script: "./gradlew build"
 after_success:
-  - ls ./build/libs
-
+- ls ./build/libs
 deploy:
-    provider: releases
-    api_key: $OAUTH_KEY
-    file_glob: true
-    file: ./build/libs/CheesecakeCapes*.jar
-    skip_cleanup: true
-    on:
-        tags: true
+  provider: releases
+  api_key: "$OAUTH_KEY"
+  file_glob: true
+  file: "./build/libs/CheesecakeCapes*.jar"
+  skip_cleanup: true
+  on:
+    tags: true
+notifications:
+  slack:
+    secure: P+9ulVr8Z73SJG37Ox1pBtVHQSz+2aeUL/ON71ECMj3LCrLmsQrFv+kPKNEz5xCkxt0IfajZGvKYB5xdzkyJqVB7ajfUFfMHWO8GzVtPEq/Iy8F66HDzy3Lc4S5C/9Ibm7wD829p3lfdSXRPJY9u3ox+8qStLVkZLjB0y9SWPPQ=
