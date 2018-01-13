@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class CheesecakeCapes {
 
     //Essential variables for Mod info
-    public static final String MOD_ID = "CheesecakeCapes";
+    public static final String MOD_ID = "cheesecakecapes";
     public static final String VERSION = "1.12.2-1.5";
     public static final String MOD_NAME = "Cheesecake Capes Mod";
 
