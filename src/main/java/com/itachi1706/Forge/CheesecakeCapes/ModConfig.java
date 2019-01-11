@@ -17,11 +17,8 @@ public class ModConfig {
     @Config.Comment("Load custom skin on Single Player Worlds")
     public static boolean skinLoadOnSP = false;
 
-    @Config.Comment("Load custom skin on Multiplayer Servers with online-mode=true")
-    public static boolean skinLoadOnOnlineMP = false;
-
-    @Config.Comment("Load custom skin on Multiplayer Servers with online-mode=false")
-    public static boolean skinLoadOnOfflineMP = true;
+    @Config.Comment("Load custom skin on Multiplayer Servers")
+    public static boolean skinLoadOnMP = true;
 
     @Mod.EventBusSubscriber(modid = CheesecakeCapes.MOD_ID)
     private static class EventHandler {

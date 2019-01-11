@@ -6,6 +6,7 @@
  */
 package com.jadarstudios.developercapes.cape;
 
+import com.itachi1706.Forge.CheesecakeCapes.SkinHelper;
 import com.jadarstudios.developercapes.HDImageBuffer;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
@@ -62,7 +63,7 @@ public class StaticCape extends AbstractCape {
         texture.put(MinecraftProfileTexture.Type.ELYTRA, TEXTURE_ELYTRA);
 
         // If skin then add
-        if (skin != null) {
+        if (skin != null && SkinHelper.shouldLoadSkin()) {
             MinecraftProfileTexture.Type skinType = getType(skin.getLocation());
             texture.put(skinType, skin.getLocation());
             Minecraft.getMinecraft().renderEngine.loadTexture(skin.getLocation(), skin.getTexture());
