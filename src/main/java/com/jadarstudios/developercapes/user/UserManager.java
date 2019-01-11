@@ -13,6 +13,9 @@ import com.jadarstudios.developercapes.cape.ICape;
 import java.util.Collection;
 import java.util.HashMap;
 
+import static com.jadarstudios.developercapes.DevCapes.DEV_CAPE;
+import static com.jadarstudios.developercapes.DevCapes.DEV_SKIN;
+
 /**
  * Users can not be trusted to put capes on by themselves
  * 
@@ -66,15 +69,32 @@ public class UserManager {
         return user;
     }
 
+    /*
+    Parses that accepts only capes, use {#parse(user,cape,skin)} for offline skin support
+     */
     public User parse(String user, Object cape) {
         User userInstance = new User(user);
 
-        ICape capeInstance = (cape instanceof ICape) ? (ICape)cape : CapeManager.getInstance().parse(user, cape.toString());
+        ICape capeInstance = (cape instanceof ICape) ? (ICape)cape : CapeManager.getInstance().parse(user, cape.toString(), DEV_CAPE);
 
         if (capeInstance != null) {
             userInstance.capes.add(capeInstance);
         } else {
             DevCapes.logger.error(String.format("Error parsing cape, %s", cape.toString()));
+        }
+
+        return userInstance;
+    }
+
+    public User parse(String user, Object cape, Object offlineSkin) {
+        User userInstance = parse(user, cape);
+
+        ICape offlineSkinInstance = (offlineSkin instanceof ICape) ? (ICape)offlineSkin : CapeManager.getInstance().parse(user, offlineSkin.toString(), DEV_SKIN);
+
+        if (offlineSkinInstance != null) {
+            userInstance.skins.add(offlineSkinInstance);
+        } else {
+            DevCapes.logger.error(String.format("Error parsing offline skin, %s", offlineSkinInstance.toString()));
         }
 
         return userInstance;

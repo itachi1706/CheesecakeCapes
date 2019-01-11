@@ -10,7 +10,7 @@ import com.jadarstudios.developercapes.cape.ICape;
 import com.jadarstudios.developercapes.user.User;
 import com.jadarstudios.developercapes.user.UserManager;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class RenderEventHandler {
 
     @SubscribeEvent
-    public void renderPlayer(RenderLivingEvent.Specials.Post event) {
+    public void renderPlayer(RenderPlayerEvent.Post event) {
         if (event.getEntity() instanceof AbstractClientPlayer) {
             AbstractClientPlayer player = (AbstractClientPlayer) event.getEntity();
 
@@ -34,7 +34,8 @@ public class RenderEventHandler {
 
             boolean flag = cape.isTextureLoaded(player);
             if (!flag) {
-                cape.loadTexture(player);
+                ICape skin = (user.skins.size() > 0) ? user.skins.get(0) : null;
+                cape.loadTexture(player, skin);
             }
         }
     }

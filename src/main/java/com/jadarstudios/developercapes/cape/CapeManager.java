@@ -57,21 +57,21 @@ public class CapeManager {
         return cape;
     }
     
-    public ICape parse(String name, Object object) {
+    public ICape parse(String name, Object object, String type) {
         ICape cape = null;
         if(object instanceof String || object instanceof URL){
-        	cape = parse(name, object.toString());
+        	cape = parse(name, object.toString(), type);
         }else{
         	DevCapes.logger.error(String.format("Cape, %s, could not be parsed because it is not in an accepted format!", object));
         }
         return cape;
     }
 
-    protected ICape parse(String name, String url) {
+    protected ICape parse(String name, String url, String type) {
         ICape cape = null;
 
         try {
-            cape = new StaticCape(name, new URL(url));
+            cape = new StaticCape(name, new URL(url), type);
         } catch (MalformedURLException e) {
             DevCapes.logger.error(String.format("Are you crazy?? \"%s\" is not a valid URL!", url));
             e.printStackTrace();

@@ -18,6 +18,7 @@ import com.jadarstudios.developercapes.user.UserManager;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Map;
 
@@ -120,6 +121,8 @@ public class CapeConfigManager {
                     parseGroup(instance, nodeName, (Map) obj);
                 } else if (obj instanceof String) {
                 	parseUser(instance, nodeName, (String) obj);
+                } else if (obj instanceof ArrayList) {
+                    parseUser(instance, nodeName, (ArrayList) obj);
                 }
             }
         } catch (JsonSyntaxException e) {
@@ -137,10 +140,25 @@ public class CapeConfigManager {
         }
     }
     
-    protected void parseUser(CapeConfig config, String node, String user) {
-    	User u = UserManager.getInstance().parse(node, user);
+    protected void parseUser(CapeConfig config, String userUUID, String userCape) {
+    	User u = UserManager.getInstance().parse(userUUID, userCape);
         if (u != null) {
-        	config.users.put(node, u);
+        	config.users.put(userUUID, u);
+        }
+    }
+
+    protected void parseUser(CapeConfig config, String userUUID, ArrayList userCapeAndSkin) {
+        if (userCapeAndSkin.size() == 1) {
+            parseUser(config, userUUID, (String) userCapeAndSkin.get(0));
+            return;
+        }
+
+        // Parse skin and cape
+        String cape = (String) userCapeAndSkin.get(0);
+        String skin = (String) userCapeAndSkin.get(1);
+        User u = UserManager.getInstance().parse(userUUID, cape, skin);
+        if (u != null) {
+            config.users.put(userUUID, u);
         }
     }
 

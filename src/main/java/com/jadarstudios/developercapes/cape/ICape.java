@@ -23,7 +23,7 @@ public interface ICape {
 
     public ResourceLocation getLocation();
 
-    public void loadTexture(AbstractClientPlayer player);
+    public void loadTexture(AbstractClientPlayer player, ICape skin);
 
     public boolean isTextureLoaded(AbstractClientPlayer player);
 }
