@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.jadarstudios.developercapes.DevCapes.DEV_CAPE;
+
 /**
  * All groups have to be managed
  * 
@@ -80,7 +82,7 @@ public class GroupManager {
         ArrayList users = (ArrayList)usersObj;
         String capeUrl = (String)capeUrlObj;
 
-        group.cape = CapeManager.getInstance().parse(name, capeUrl);
+        group.cape = CapeManager.getInstance().parse(name, capeUrl, DEV_CAPE);
 
         for (Object obj : users) {
             User user = UserManager.getInstance().parse((String)obj, group.cape);

@@ -27,6 +27,9 @@ public class DevCapes {
 
     public static final Logger logger = LogManager.getLogger("DevCapes");
 
+    public static final String DEV_CAPE = "cape";
+    public static final String DEV_SKIN = "skin";
+
     protected DevCapes() {
         MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
     }

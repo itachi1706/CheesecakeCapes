@@ -34,7 +34,8 @@ public class RenderEventHandler {
 
             boolean flag = cape.isTextureLoaded(player);
             if (!flag) {
-                cape.loadTexture(player);
+                ICape skin = (user.skins.size() > 0) ? user.skins.get(0) : null;
+                cape.loadTexture(player, skin);
             }
         }
     }
