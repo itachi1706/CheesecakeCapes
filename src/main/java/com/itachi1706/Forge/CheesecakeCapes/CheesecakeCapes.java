@@ -3,7 +3,6 @@ package com.itachi1706.Forge.CheesecakeCapes;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -27,12 +26,13 @@ public class CheesecakeCapes {
     public CheesecakeCapes() {
         proxy = DistExecutor.runForDist(()-> CheesecakeClientProxy::new, ()-> CheesecakeCommonProxy::new);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientInit);
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.CLIENT, com.itachi1706.Forge.CheesecakeCapes.ModConfig.spec);
+        FMLJavaModLoadingContext.get().getModEventBus().register(com.itachi1706.Forge.CheesecakeCapes.ModConfig.class);
     }
 
     //@Mod.EventHandler
     private void clientInit(FMLClientSetupEvent event){
         proxy.initCapes();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, com.itachi1706.Forge.CheesecakeCapes.ModConfig.spec);
     }
 
 

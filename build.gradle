@@ -41,6 +41,8 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
+            args = ["--username", 'helpla']
+
             mods {
                 cheesecakecapes {
                     source sourceSets.main

@@ -13,8 +13,8 @@ public class ModConfig {
     public static final ForgeConfigSpec spec = BUILDER.build();
 
     public static class General {
-        public final ForgeConfigSpec.ConfigValue<Boolean> skinLoadOnSP;
-        public final ForgeConfigSpec.ConfigValue<Boolean> skinLoadOnMP;
+        public final ForgeConfigSpec.BooleanValue skinLoadOnSP;
+        public final ForgeConfigSpec.BooleanValue skinLoadOnMP;
 
         public General(ForgeConfigSpec.Builder builder) {
             builder.push("General");
