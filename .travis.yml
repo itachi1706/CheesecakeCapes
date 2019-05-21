@@ -3,7 +3,7 @@ jdk: oraclejdk8
 dist: trusty # Use Ubuntu 14.04 as its faster
 env:
   global:
-    - DISCORD_URL=https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+    - DISCORD_URL=https://raw.githubusercontent.com/itachi1706/travis-ci-discord-webhook/master/send.sh
 before_install:
 - chmod +x gradlew
 script: "./gradlew build"
