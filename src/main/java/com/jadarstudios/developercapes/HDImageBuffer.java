@@ -6,7 +6,9 @@
  */
 package com.jadarstudios.developercapes;
 
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.renderer.IImageBuffer;
+import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.client.renderer.texture.NativeImage;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -20,6 +22,11 @@ import javax.annotation.Nonnull;
  */
 @OnlyIn(Dist.CLIENT)
 public class HDImageBuffer implements IImageBuffer {
+
+    private MinecraftProfileTexture.Type skinType;
+    public HDImageBuffer(MinecraftProfileTexture.Type type) {
+        skinType = type;
+    }
     /*@Override
     public BufferedImage parseUserSkin(final BufferedImage texture) {
         if (texture == null)
@@ -36,20 +43,43 @@ public class HDImageBuffer implements IImageBuffer {
         return capeImage;
     }*/
 
+    /*
+    ThreadDownloadImageData threaddownloadimagedata = new ThreadDownloadImageData(file2, profileTexture.getUrl(), DefaultPlayerSkin.getDefaultSkinLegacy(), new IImageBuffer() {
+            public NativeImage parseUserSkin(NativeImage nativeImageIn) {
+               return iimagebuffer != null ? iimagebuffer.parseUserSkin(nativeImageIn) : nativeImageIn;
+            }
+
+            public void skinAvailable() {
+               if (iimagebuffer != null) {
+                  iimagebuffer.skinAvailable();
+               }
+
+               if (skinAvailableCallback != null) {
+                  skinAvailableCallback.onSkinTextureAvailable(textureType, resourcelocation, profileTexture);
+               }
+
+            }
+         });
+     */
+
     @Override
     @Nonnull
     public NativeImage parseUserSkin(@Nonnull NativeImage nativeImage) {
-        int imageWidth = nativeImage.getWidth() <= 64 ? 64 : nativeImage.getWidth();
+        final IImageBuffer iimagebuffer = skinType == MinecraftProfileTexture.Type.SKIN ? new ImageBufferDownload() : null;
+        if (iimagebuffer != null) return iimagebuffer.parseUserSkin(nativeImage);
+        return nativeImage;
+
+        /*int imageWidth = nativeImage.getWidth() <= 64 ? 64 : nativeImage.getWidth();
         int imageHeight = nativeImage.getHeight() <= 32 ? 32 : nativeImage.getHeight();
 
-        NativeImage capeImage = new NativeImage(imageWidth, imageHeight, false);
+        NativeImage capeImage = new NativeImage(imageWidth, imageHeight, true);
 
         capeImage.copyImageData(nativeImage);
-        /*Graphics graphics = capeImage.getFormat();
+        *//*Graphics graphics = capeImage.getFormat();
         graphics.drawImage(nativeImage, 0, 0, null);
-        graphics.dispose();*/
+        graphics.dispose();*//*
 
-        return capeImage;
+        return capeImage;*/
     }
 
     @Override

@@ -6,6 +6,7 @@
  */
 package com.jadarstudios.developercapes.cape;
 
+import com.itachi1706.Forge.CheesecakeCapes.CheesecakeCapes;
 import com.itachi1706.Forge.CheesecakeCapes.SkinHelper;
 import com.jadarstudios.developercapes.HDImageBuffer;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
@@ -13,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.texture.ThreadDownloadImageData;
+import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
@@ -82,11 +84,11 @@ public class StaticCape extends AbstractCape {
             this.texture = null;
             return;
         }
-        this.texture = new ThreadDownloadImageData(null, url.toString(), null, new HDImageBuffer());
+        this.texture = new ThreadDownloadImageData(null, url.toString(), DefaultPlayerSkin.getDefaultSkinLegacy(), new HDImageBuffer(getType(this.location)));
     }
 
     public void setName(String name, String type) {
         this.name = name;
-        this.location = new ResourceLocation("devcapes/" + name + "-" + type);
+        this.location = new ResourceLocation(CheesecakeCapes.MOD_ID, name + "-" + type);
     }
 }

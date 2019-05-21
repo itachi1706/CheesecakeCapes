@@ -32,6 +32,7 @@ public class CheesecakeCapes {
 
     //@Mod.EventHandler
     private void clientInit(FMLClientSetupEvent event){
+        LogHelper.info("Initializing ClientSetupEvent");
         proxy.initCapes();
     }
 
