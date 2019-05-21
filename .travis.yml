@@ -5,17 +5,17 @@ env:
   global:
     - DISCORD_URL=https://raw.githubusercontent.com/itachi1706/travis-ci-discord-webhook/master/send.sh
 before_install:
-- chmod +x gradlew
+  - chmod +x gradlew
 script: "./gradlew build"
 after_success:
-- ls ./build/libs
-- wget $DISCORD_URL
-- chmod +x send.sh
-- ./send.sh success $WEBHOOK_URL
+  - ls ./build/libs
+  - wget $DISCORD_URL
+  - chmod +x send.sh
+  - ./send.sh success $WEBHOOK_URL
 after_failure:
-- wget $DISCORD_URL
-- chmod +x send.sh
-- ./send.sh failure $WEBHOOK_URL
+  - wget $DISCORD_URL
+  - chmod +x send.sh
+  - ./send.sh failure $WEBHOOK_URL
 deploy:
   provider: releases
   api_key: "$OAUTH_KEY"
