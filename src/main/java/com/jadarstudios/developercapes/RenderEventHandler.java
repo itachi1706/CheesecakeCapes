@@ -11,7 +11,7 @@ import com.jadarstudios.developercapes.user.User;
 import com.jadarstudios.developercapes.user.UserManager;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
  * This is not the class you are looking for.

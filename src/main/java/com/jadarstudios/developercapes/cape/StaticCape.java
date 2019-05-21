@@ -12,7 +12,7 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
+import net.minecraft.client.renderer.texture.ThreadDownloadImageData;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
@@ -47,7 +47,7 @@ public class StaticCape extends AbstractCape {
     }
 
     private MinecraftProfileTexture.Type getType(ResourceLocation location) {
-        if (location.getResourcePath().contains("-" + DEV_CAPE)) return MinecraftProfileTexture.Type.CAPE;
+        if (location.getPath().contains("-" + DEV_CAPE)) return MinecraftProfileTexture.Type.CAPE;
         return MinecraftProfileTexture.Type.SKIN;
     }
 
@@ -65,10 +65,10 @@ public class StaticCape extends AbstractCape {
         if (skin != null && SkinHelper.shouldLoadSkin()) {
             MinecraftProfileTexture.Type skinType = getType(skin.getLocation());
             texture.put(skinType, skin.getLocation());
-            Minecraft.getMinecraft().renderEngine.loadTexture(skin.getLocation(), skin.getTexture());
+            Minecraft.getInstance().getTextureManager().loadTexture(skin.getLocation(), skin.getTexture());
         }
 
-        Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
+        Minecraft.getInstance().getTextureManager().loadTexture(location, this.getTexture());
     }
 
     @Override
@@ -87,6 +87,6 @@ public class StaticCape extends AbstractCape {
 
     public void setName(String name, String type) {
         this.name = name;
-        this.location = new ResourceLocation("DevCapes/" + name + "-" + type);
+        this.location = new ResourceLocation("devcapes/" + name + "-" + type);
     }
 }

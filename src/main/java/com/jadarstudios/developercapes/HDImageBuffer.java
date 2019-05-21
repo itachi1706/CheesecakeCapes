@@ -7,20 +7,20 @@
 package com.jadarstudios.developercapes;
 
 import net.minecraft.client.renderer.IImageBuffer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.NativeImage;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import javax.annotation.Nonnull;
 
 /**
  * This class is an implementation of {@link IImageBuffer} that allows capes to be in HD
  *
  * @author Jadar
  */
-@SideOnly(Side.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class HDImageBuffer implements IImageBuffer {
-    @Override
+    /*@Override
     public BufferedImage parseUserSkin(final BufferedImage texture) {
         if (texture == null)
             return null;
@@ -32,6 +32,22 @@ public class HDImageBuffer implements IImageBuffer {
         Graphics graphics = capeImage.getGraphics();
         graphics.drawImage(texture, 0, 0, null);
         graphics.dispose();
+
+        return capeImage;
+    }*/
+
+    @Override
+    @Nonnull
+    public NativeImage parseUserSkin(@Nonnull NativeImage nativeImage) {
+        int imageWidth = nativeImage.getWidth() <= 64 ? 64 : nativeImage.getWidth();
+        int imageHeight = nativeImage.getHeight() <= 32 ? 32 : nativeImage.getHeight();
+
+        NativeImage capeImage = new NativeImage(imageWidth, imageHeight, false);
+
+        capeImage.copyImageData(nativeImage);
+        /*Graphics graphics = capeImage.getFormat();
+        graphics.drawImage(nativeImage, 0, 0, null);
+        graphics.dispose();*/
 
         return capeImage;
     }
