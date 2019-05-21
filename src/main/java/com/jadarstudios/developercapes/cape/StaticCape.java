@@ -40,11 +40,10 @@ public class StaticCape extends AbstractCape {
     }
 
     private Map<MinecraftProfileTexture.Type, ResourceLocation> getTexture(AbstractClientPlayer player) {
-        //player.func_152121_a(MinecraftProfileTexture.Type.CAPE, location);
+        // player.func_152121_a(MinecraftProfileTexture.Type.CAPE, location);
         // Reflection (May fail someday)
-        NetworkPlayerInfo networkPlayerInfo = ObfuscationReflectionHelper.getPrivateValue(AbstractClientPlayer.class, player, "field_175157_a", "playerInfo");
-
-        return ObfuscationReflectionHelper.getPrivateValue(NetworkPlayerInfo.class, networkPlayerInfo, "field_187107_a", "playerTextures");
+        NetworkPlayerInfo networkPlayerInfo = ObfuscationReflectionHelper.getPrivateValue(AbstractClientPlayer.class, player, "field_175157_a"); // field_175157_a -> playerInfo
+        return ObfuscationReflectionHelper.getPrivateValue(NetworkPlayerInfo.class, networkPlayerInfo, "field_187107_a"); // field_187107_a -> playerTextures
     }
 
     private MinecraftProfileTexture.Type getType(ResourceLocation location) {
