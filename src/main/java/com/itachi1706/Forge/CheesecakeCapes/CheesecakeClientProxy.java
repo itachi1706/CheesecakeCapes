@@ -8,7 +8,7 @@ import com.jadarstudios.developercapes.DevCapes;
  */
 public class CheesecakeClientProxy extends CheesecakeCommonProxy {
 
-    private final String CAPES_URL_CONFIG = "http://www.itachi1706.com/mc/CheesecakeCapesConfig.txt";
+    private final String CAPES_URL_CONFIG = "https://www.itachi1706.com/mc/CheesecakeCapesConfig.txt";
 
     @Override
     public void initCapes()
